@@ -35,7 +35,7 @@ int main(int argc, char **argv)
         editor.setEditor(v);
         break;
     }
-    //editor.loop();
+    editor.loop();
     editor.file->printText();
 
     return 0;

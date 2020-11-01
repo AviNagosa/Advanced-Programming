@@ -13,3 +13,16 @@ void Document::printText()
         std::cout << v[i] << std::endl;
     }
 }
+
+void Document::goToLine(std::string s) {}
+void Document::goForward(std::string s) {}
+void Document::getBack(std::string s) {}
+void Document::lastRow(std::string s) {}
+void Document::newRow(std::string s) {}
+void Document::newChar(std::string s) {}
+void Document::switchRow(std::string s) {}
+void Document::replaceWord(std::string s) {}
+void Document::replaceFirstWord(std::string s) {}
+void Document::mergeRows(std::string s) {}
+void Document::createFile(std::string s) {}
+void Document::getOut(std::string s) {}
