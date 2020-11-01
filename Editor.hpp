@@ -7,8 +7,7 @@ class Editor
 public:
     Document *file;
 
-    Editor();
-
+    Editor() {}
     void setEditor(std::vector<std::string>);
     void loop();
 };

@@ -19,6 +19,8 @@ std::vector<std::string> fileReader(std::string filePath)
     {
         v.push_back(line);
     }
+
+    return v;
 }
 
 int main(int argc, char **argv)
@@ -29,14 +31,11 @@ int main(int argc, char **argv)
     case 1:
         break;
     case 2:
-        std::string text = argv[1];
-        std::vector<std::string> v = fileReader(text);
-
+        std::vector<std::string> v = fileReader(argv[1]);
         editor.setEditor(v);
         break;
     }
     //editor.loop();
-
     editor.file->printText();
 
     return 0;

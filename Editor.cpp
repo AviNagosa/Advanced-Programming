@@ -2,7 +2,7 @@
 
 void Editor::setEditor(std::vector<std::string> v)
 {
-    file = new Document(v);
+    this->file = new Document(v);
 }
 
 void Editor::loop() {}
