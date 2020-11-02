@@ -6,6 +6,7 @@ class Editor
 
 public:
     Document *file;
+    int row;
 
     Editor() {}
     void setEditor(std::vector<std::string>);
