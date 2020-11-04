@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 class Document
@@ -18,5 +19,5 @@ public:
     int findWord(std::string, int);
     void replaceWord(std::string, std::string, int);
 
-    void createFile();
+    void createFile(const std::string &);
 };

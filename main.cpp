@@ -25,18 +25,19 @@ std::vector<std::string> fileReader(std::string filePath)
 
 int main(int argc, char **argv)
 {
-    Editor editor;
-    switch (argc)
+    //Editor editor;
+    if (argc == 1)
     {
-    case 1:
-        break;
-    case 2:
-        std::vector<std::string> v = fileReader(argv[1]);
-        editor.setEditor(v);
-        break;
+        Editor editor;
+        editor.loop();
     }
-    editor.loop();
-    editor.file->printText();
-
+    else if (argc == 2)
+    {
+        Document d(fileReader(argv[1]));
+        Editor editor(d);
+        editor.loop();
+    }
+    else
+        std::cout << "Invalid input" << std::endl;
     return 0;
 }
