@@ -1,23 +1,16 @@
 #include "‫‪Document‬‬.hpp"
 
+//constructor
 Document::Document(std::vector<std::string> text)
 {
     for (int i = 0; i < text.size(); i++)
         v.push_back(text[i]);
 }
 
-void Document::printText()
-{
-    for (int i = 0; i < v.size(); i++)
-    {
-        std::cout << v[i] << std::endl;
-    }
-}
-
 /**
- * void method
- * Get an Integer who represent the row
- * insert one row or more before/after the curr row
+ * Get     -  integer for line[i]
+ * Insert  -  one row or more before/after line[i]
+ * Commend -  'a' or 'i'
  **/
 void Document::addLine(int i)
 {
@@ -32,6 +25,11 @@ void Document::addLine(int i)
     }
 }
 
+/**
+ * Get     -  integer for line[i]
+ * Replace -  line[i] in new text 
+ * Commend -  'c'
+ **/
 void Document::replaceLine(int i)
 {
     std::string text;
@@ -44,18 +42,33 @@ void Document::replaceLine(int i)
     addLine(i);
 }
 
+/**
+ * Get    - integer for line[i]
+ * Remove - line[i] 
+ **/
 void Document::deleteLine(int i)
 {
     v.erase(v.begin() + i);
 }
 
-void Document::mergeRows(int i)
+/**
+ * Get     - integer for line[i]
+ * Merge   - line[i] = line[i] + line[i+1]
+ * Remove  - line[i+1]
+ **/
+void Document::mergeLine(int i)
 {
     v[i] += v[i + 1];
     deleteLine(i + 1);
 }
 
-int Document::findWord(std::string word, int line)
+/**
+ * Get        - string and integer (word,search started line)
+ * not found  - search in line+1 (till line[size]),
+ *                 still not start search from line[0]
+ * found      - return line index
+ **/
+int Document::findWord(const std::string &word, int line)
 {
     for (int i = line; i < v.size(); i++)
     {
@@ -75,13 +88,21 @@ int Document::findWord(std::string word, int line)
     return line;
 }
 
-void Document::replaceWord(std::string _old, std::string _new, int line)
+/**
+ * Get     - string,string,int
+ * Replace - old word,new word,row
+ **/
+void Document::replaceWord(std::string &_old, std::string &_new, int line)
 {
     std::size_t found = v[line].find(_old);
     if (found != std::string::npos)
-        v[line].replace(found, _old.length() - 1, _new);
+        v[line].replace(found, _old.length(), _new);
 }
 
+/**
+ * Get - string as file name
+ * return new txt file 
+ **/
 void Document::createFile(const std::string &doc_name)
 {
     std::ofstream new_doc(doc_name);

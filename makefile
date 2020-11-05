@@ -1,5 +1,5 @@
 ED: main.o Editor.o ‫‪Document‬‬.o
-	clang++-9  main.o Editor.o ‫‪Document‬‬.o -o ED
+	clang++-9  main.o Editor.o ‫‪Document‬‬.o -o ed
 
 Editor.o: Editor.cpp Editor.hpp
 	clang++-9 -c Editor.cpp
@@ -11,5 +11,5 @@ main.o: main.cpp Editor.hpp
 	clang++-9 -c main.cpp
 
 clean:
-	rm *.o ED
+	rm *.o ed
 

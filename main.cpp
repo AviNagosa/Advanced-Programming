@@ -6,8 +6,8 @@
 #include <iostream>
 
 /**
- * get file path as a string
- * return a string vector - every row is line from the text
+ * Get    - string as file path
+ * Return - vector<string>  every row is line from the text
  **/
 std::vector<std::string> fileReader(std::string filePath)
 {
@@ -25,19 +25,20 @@ std::vector<std::string> fileReader(std::string filePath)
 
 int main(int argc, char **argv)
 {
-    //Editor editor;
-    if (argc == 1)
+    Editor *editor;
+    switch (argc)
     {
-        Editor editor;
-        editor.loop();
-    }
-    else if (argc == 2)
-    {
+    case 1:
+        editor = new Editor();
+        break;
+    case 2:
         Document d(fileReader(argv[1]));
-        Editor editor(d);
-        editor.loop();
+        editor = new Editor(d);
+        break;
     }
-    else
-        std::cout << "Invalid input" << std::endl;
+    editor->loop();
+
+    delete editor;
+
     return 0;
 }

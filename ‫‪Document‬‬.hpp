@@ -11,13 +11,11 @@ public:
     Document() {}
     Document(std::vector<std::string>);
 
-    void printText();
     void addLine(int);
     void replaceLine(int);
     void deleteLine(int);
-    void mergeRows(int);
-    int findWord(std::string, int);
-    void replaceWord(std::string, std::string, int);
-
+    void mergeLine(int);
+    int findWord(const std::string &, int);
+    void replaceWord(std::string &, std::string &, int);
     void createFile(const std::string &);
 };
