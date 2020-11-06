@@ -1,4 +1,4 @@
-#include "Editor.hpp"
+#include "Editor.h"
 #include <sstream>
 
 Editor::Editor(Document &d) : doc(d) { row = 0; }
@@ -10,6 +10,20 @@ int Editor::to_integer(const std::string &s)
     std::stringstream helper(s);
     helper >> n;
     return n;
+}
+
+std::vector<std::string> Editor::split(std::string str, std::string sep)
+{
+    char *cstr = const_cast<char *>(str.c_str());
+    char *current;
+    std::vector<std::string> arr;
+    current = strtok(cstr, sep.c_str());
+    while (current != NULL)
+    {
+        arr.push_back(current);
+        current = strtok(NULL, sep.c_str());
+    }
+    return arr;
 }
 
 //check if the string is a number
@@ -97,24 +111,31 @@ void Editor::loop()
             else
                 std::cout << "?" << std::endl;
         }
+        // case -> find the line with the word "/text/""
         else if (commend[0] == '/' &&
-                 commend[commend.length() - 1] == '/') // case -> /text/
+                 commend[commend.length() - 1] == '/')
         {
-            std::string word = commend.substr(1, 4);
-            row = doc.findWord(word, row + 1);
+            std::vector<std::string> temp = split(commend, "/");
+            row = doc.findWord(temp[0], row + 1);
         }
+        //case -> replace between words "s/old/new/""
         else if (commend[0] == 's' &&
-                 commend[commend.length() - 1] == '/') //case -> s/old/new/
+                 commend[commend.length() - 1] == '/')
         {
-            std::string _old = commend.substr(2, 3);
-            std::string _new = commend.substr(6, 3);
+            std::vector<std::string> temp = split(commend, "/");
 
-            doc.replaceWord(_old, _new, row);
+            //replace between the words
+            if (temp.size() == 3)
+                doc.replaceWord(temp[1], temp[2], row);
+            //if the "new" word is empty
+            else if (temp.size() == 2)
+                doc.removeWord(temp[1], row);
+            //there is no word to replace (s//)
+            else
+                std::cout << "?" << std::endl;
         }
         else if (commend[0] == 'w')
-        {
             doc.createFile(commend.substr(2, commend.length() - 2));
-        }
         else
             std::cout << "?" << std::endl;
 

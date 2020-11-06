@@ -1,4 +1,4 @@
-#include "‫‪Document‬‬.hpp"
+#include "‫‪Document‬‬.h"
 
 //constructor
 Document::Document(std::vector<std::string> text)
@@ -97,6 +97,13 @@ void Document::replaceWord(std::string &_old, std::string &_new, int line)
     std::size_t found = v[line].find(_old);
     if (found != std::string::npos)
         v[line].replace(found, _old.length(), _new);
+}
+
+void Document::removeWord(std::string &word, int line)
+{
+    std::size_t found = v[line].find(word);
+    if (found != std::string::npos)
+        v[line].erase(found, word.length());
 }
 
 /**

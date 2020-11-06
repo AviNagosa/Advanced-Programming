@@ -1,5 +1,7 @@
 #pragma once
-#include "‫‪Document‬‬.hpp"
+#include "‫‪Document‬‬.h"
+#include <string.h>
+#include <stdio.h>
 
 class Editor
 {
@@ -14,4 +16,5 @@ public:
     bool is_number(const std::string &);
     int to_integer(const std::string &);
     bool is_valid(int);
+    std::vector<std::string> split(std::string, std::string);
 };

@@ -1,4 +1,4 @@
-#include "Editor.hpp"
+#include "Editor.h"
 #include <fstream>
 #include <vector>
 #include <sstream>
